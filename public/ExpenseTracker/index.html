@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"> -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="addExpense(event)">
+        <label for="amount" class="form-label">Expense Amount:</label>
+        <input type="number" class="form-control" id="amount" name="amount" required/>
+        <label for="description" class="form-label" >Description:</label>
+        <input type="text" class="form-control" id="description" name="description" required/>
+        <label for="categories" class="form-label">Category:</label>
+        <select name="category" id="categories" class="form-control">
+            <option value="Petrol">Petrol</option>
+            <option value="Food">Food</option>
+            <option value="Salary">Salary</option>
+        </select>
+        <button>Add Expense</button>
+    </form>
+      <div id="msg"></div>
+
+     <button id="rzp-button1">Buy Premium</button>
+      <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+      <h1>Expenses</h1>
+    <ul id="list"></ul>
+    <div class="container" id="container"></div>
+    <form onsubmit="setLimit(event)">
+    <input type="number" id="range" name="range">
+    <button>Set Limit</button>
+</form>
+    <button onclick="download()" id="downloadExpense">Download File</button>
+    <ul id="url"></ul>
+    <ul id="leaderboard"></ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
