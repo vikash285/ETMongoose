@@ -80,7 +80,12 @@ exports.updatePassword = async(req, res) => {
                             }
                             user.password = hash
                             await user.save()
-                                res.status(201).json({message: 'Successfuly update the new password'})
+                            res.status(201).send(`<html>
+                            <script>
+                                alert('Password updated!')
+                                window.location.href = "/Login/login.html"
+                            </script>
+                            </html>`)
                         })
                     })
             } else{

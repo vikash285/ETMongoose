@@ -9,7 +9,7 @@ async function addExpense(event) {
        }
        const token = localStorage.getItem('token')
        const res = await axios.post("http://localhost:3000/expense/addExpenses", expenseDetails, { headers: { "Authorization": token }})
-       showNewUser(res.data.userExpense)
+       showNewExpense(res.data.userExpense)
     } catch (err) {
         document.body.innerHTML += `<div style="color:red;">${err}</div>`
     }
@@ -20,6 +20,7 @@ function setLimit(event) {
           event.preventDefault()
           const limit = event.target.range.value
           localStorage.setItem('keyLimit', limit)
+          getExpenses(1, limit)
     } catch (err) {
         console.log(err)
     }
@@ -52,11 +53,7 @@ window.addEventListener("DOMContentLoaded",async()=>{
 
         const page = 1
         const limit = localStorage.getItem('keyLimit') || 1
-        const res = await axios.get(`http://localhost:3000/expense/getExpenses?page=${page}&limit=${limit}`, { headers: { "Authorization": token }})
-            for(var i=0;i<res.data.allExpenses.length;i++){
-                showNewUser(res.data.allExpenses[i]);
-            }
-            showPagination(res.data)
+        getExpenses(page, limit)
         } catch (err) {
             console.log(err);
         }
@@ -108,8 +105,9 @@ async function getExpenses(page, limit) {
     try {
         const token = localStorage.getItem('token')
         const res = await axios.get(`http://localhost:3000/expense/getExpenses?page=${page}&limit=${limit}`, { headers: { "Authorization": token }})
+        document.getElementById('list').innerHTML = ''
         for(var i=0;i<res.data.allExpenses.length;i++){
-            showNewUser(res.data.allExpenses[i]);
+            showNewExpense(res.data.allExpenses[i]);
         }
         showPagination(res.data)
     } catch (err) {
@@ -117,7 +115,7 @@ async function getExpenses(page, limit) {
     }
 }
 
-function showNewUser(user){
+function showNewExpense(user){
     try{
     document.getElementById('amount').value='';
     document.getElementById('description').value='';
@@ -125,7 +123,7 @@ function showNewUser(user){
 
     const parentNode=document.getElementById('list');
     const childHTML=`<li id=${user._id}> ${user.amount} - ${user.description} - ${user.category}
-        <button onclick=deleteUser('${user._id}','${user.amount}')>Delete User</button>
+        <button onclick=deleteExpense('${user._id}','${user.amount}')>Delete User</button>
         </li>`
     parentNode.innerHTML=parentNode.innerHTML+childHTML
     } catch(err) {
@@ -133,17 +131,17 @@ function showNewUser(user){
     }
 }
 
-async function deleteUser(userId, amount){
+async function deleteExpense(userId, amount){
     try{
         const token = localStorage.getItem('token')
     await axios.delete(`http://localhost:3000/expense/deleteExpense/${userId}/${amount}`, { headers: { "Authorization": token }})
-    removeUserFromScreen(userId);
+    removeExpenseFromScreen(userId);
     } catch (err) {
         console.log(err);
     }
 }
 
-function removeUserFromScreen(userId){
+function removeExpenseFromScreen(userId){
     try{
     const parentNode=document.getElementById('list');
     const childToBeDeleted=document.getElementById(userId);

@@ -15,9 +15,10 @@
         <input type="text" class="form-control" id="description" name="description" required/>
         <label for="categories" class="form-label">Category:</label>
         <select name="category" id="categories" class="form-control">
-            <option value="Petrol">Petrol</option>
+            <option value="Travel">Travel</option>
             <option value="Food">Food</option>
-            <option value="Salary">Salary</option>
+            <option value="Bills">Bills</option>
+            <option value="Shoping">Shoping</option>
         </select>
         <button>Add Expense</button>
     </form>
@@ -30,7 +31,12 @@
     <ul id="list"></ul>
     <div class="container" id="container"></div>
     <form onsubmit="setLimit(event)">
-    <input type="number" id="range" name="range">
+    <select id="range" name="range">
+        <option value="2">2</option>
+        <option value="4">4</option>
+        <option value="6">6</option>
+        <option value="8">8</option>
+        </select>
     <button>Set Limit</button>
 </form>
     <button onclick="download()" id="downloadExpense">Download File</button>

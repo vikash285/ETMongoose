@@ -33,7 +33,7 @@ const getExpenses = async(req, res, next) => {
     try {
         const ITEMS_PER_PAGE = +req.query.limit || 1
         const page = +req.query.page || 1
-        const totalItems = await Expenses.countDocuments()
+        const totalItems = await Expenses.countDocuments({ userId: req.user._id })
 
         const data = await Expenses.find({ userId: req.user._id })
             .skip((page - 1) * ITEMS_PER_PAGE)
