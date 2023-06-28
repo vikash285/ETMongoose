@@ -123,7 +123,9 @@ function showNewExpense(user){
 
     const parentNode=document.getElementById('list');
     const childHTML=`<li id=${user._id}> ${user.amount} - ${user.description} - ${user.category}
-        <button onclick=deleteExpense('${user._id}','${user.amount}')>Delete User</button>
+        <button onclick=editExpense('${user._id}','${user.amount}','${user.description}','${user.category}')
+        >Edit</button>
+        <button onclick=deleteExpense('${user._id}','${user.amount}')>Delete</button>
         </li>`
     parentNode.innerHTML=parentNode.innerHTML+childHTML
     } catch(err) {
@@ -131,11 +133,23 @@ function showNewExpense(user){
     }
 }
 
+async function editExpense(id, amount, des, category) {
+    try {
+        document.getElementById('amount').value = amount;
+        document.getElementById('description').value = des;
+        document.getElementById('categories').value = category;
+
+        deleteExpense(id, amount)
+    } catch(err) {
+        console.log(err);
+    }
+}
+
 async function deleteExpense(userId, amount){
     try{
         const token = localStorage.getItem('token')
-    await axios.delete(`http://localhost:3000/expense/deleteExpense/${userId}/${amount}`, { headers: { "Authorization": token }})
-    removeExpenseFromScreen(userId);
+        await axios.delete(`http://localhost:3000/expense/deleteExpense/${userId}/${amount}`, { headers: { "Authorization": token }})
+        removeExpenseFromScreen(userId);
     } catch (err) {
         console.log(err);
     }
