@@ -1,0 +1,7 @@
+.box {
+  background-color: white;
+  border: 3px outset gold;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 50px;
+}
