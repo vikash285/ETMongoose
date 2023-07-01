@@ -200,7 +200,7 @@ function showLeaderBoard() {
     );
 
     var leaderboardEle = document.getElementById("leaderboard");
-    leaderboardEle.innerHTML += "<h1> Leader Board </h1>";
+    leaderboardEle.innerHTML += "<h3> Leader Board </h3>";
     userLeaderBoardArray.data.forEach((userDetails) => {
       leaderboardEle.innerHTML += `<li> Name - ${
         userDetails.name
@@ -264,7 +264,7 @@ function showUrl(url) {
     );
     console.log(userLeaderBoardArray);
     var leaderboardEle = document.getElementById("url");
-    leaderboardEle.innerHTML += "<h1> Download History </h1>";
+    leaderboardEle.innerHTML += "<h3> Download History </h3>";
     userLeaderBoardArray.data.allUrls.forEach((fileURL) => {
       leaderboardEle.innerHTML += `<li> URL - ${fileURL.url}, Time - ${fileURL.createdAt}`;
     });
