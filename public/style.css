@@ -1,7 +1,8 @@
 .box {
   background-color: white;
   border: 3px outset gold;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 20px;
   margin: 50px;
+  box-shadow: 10px;
 }
