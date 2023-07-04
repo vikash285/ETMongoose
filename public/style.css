@@ -1,7 +1,5 @@
 .box {
   background-color: white;
-  border: 3px outset rgb(0, 110, 255);
-  border-radius: 5px;
   padding: 20px;
   margin: 50px;
   font-family: Arial, Helvetica, sans-serif;

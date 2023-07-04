@@ -140,8 +140,8 @@ function showNewExpense(user) {
     const parentNode = document.getElementById("list");
     const childHTML = `<li id=${user._id}> ${user.amount} - ${user.description} - ${user.category}
         <button onclick=editExpense('${user._id}','${user.amount}','${user.description}','${user.category}')
-        class='btn btn-sm btn-warning'>Edit</button>
-        <button onclick=deleteExpense('${user._id}','${user.amount}') class='btn btn-sm btn-danger'>Delete</button>
+        class='btn btn-sm btn-warning li'>Edit</button>
+        <button onclick=deleteExpense('${user._id}','${user.amount}') class='btn btn-sm btn-danger li'>Delete</button>
         </li>`;
     parentNode.innerHTML = parentNode.innerHTML + childHTML;
   } catch (err) {
@@ -202,7 +202,7 @@ function showLeaderBoard() {
     var leaderboardEle = document.getElementById("leaderboard");
     leaderboardEle.innerHTML += "<h3> Leader Board </h3>";
     userLeaderBoardArray.data.forEach((userDetails) => {
-      leaderboardEle.innerHTML += `<li> Name - ${
+      leaderboardEle.innerHTML += `<li class='li'> Name - ${
         userDetails.name
       }, Total Expense - ${userDetails.totalExpenses || 0}`;
     });
@@ -266,7 +266,7 @@ function showUrl(url) {
     var leaderboardEle = document.getElementById("url");
     leaderboardEle.innerHTML += "<h3> Download History </h3>";
     userLeaderBoardArray.data.allUrls.forEach((fileURL) => {
-      leaderboardEle.innerHTML += `<li> URL - ${fileURL.url}, Time - ${fileURL.createdAt}`;
+      leaderboardEle.innerHTML += `<li class='li'> URL - ${fileURL.url}, Time - ${fileURL.createdAt}`;
     });
   };
   document.getElementById("msg").appendChild(inputElement);
